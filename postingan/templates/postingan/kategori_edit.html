@@ -1,0 +1,17 @@
+{% extends 'postingan/base.html' %}
+
+{% block content %}
+    <h2>Edit Kategori</h2>
+    <form method="POST" class="post-form">
+    	{% csrf_token %}
+        <table>
+	        <tr>
+	            <th><label for="kategori">Kategori: </label></th>
+	            <td><input type="text" name="nama_kategori"  placeholder="kategori" value="{{kat.nama_kategori}}" id="kategori"></td>
+	        <tr>	        
+	    </table>
+        <button type="submit" class="save btn btn-default">Save Category</button>
+    </form>
+
+    
+{% endblock %}

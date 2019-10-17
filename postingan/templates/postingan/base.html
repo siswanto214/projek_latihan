@@ -1,0 +1,26 @@
+{% load static %}
+<html>
+    <head>
+        <title>Ini Blog Biasa Aja</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="{% static 'css/postingan.css' %}">
+    </head>
+    <body>
+        <div class="page-header" style="margin-top: 0; padding: 20px 20px 20px 40px; margin-left: 0px;">
+            <h1><a href="/">Django Blog Saya</a></h1>            
+        </div>
+        <div class="content container">
+            {% if user.is_authenticated %}
+            <a href="{% url 'post_new' %}" class="top-menu"><button><span class="glyphicon glyphicon-plus" style="color:black;"></span></button></a>            
+            {% endif %}
+            <div class="row">
+                <div class="col-md-8">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

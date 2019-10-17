@@ -1,0 +1,34 @@
+{% extends 'postingan/base.html' %}
+
+{% block content %}
+    <h2>Edit Post</h2>
+    <form method="POST" class="post-form">
+    	{% csrf_token %}
+        <table>
+	        <tr>
+	            <th><label for="penulis">Penulis: </label></th>
+	            <td><input type="text" name="penulis"  placeholder="penulis" value="{{postingan.penulis}}" id="penulis"></td>
+	        <tr>
+	        <tr>
+	            <th><label for="judul">Judul: </label></th>
+	            <td><input type="text" name="judul"  placeholder="judul" value="{{postingan.judul}}" id="judul"></td>
+	         </tr>
+	         <tr>
+	            <th><label for="isi">Isi: </label></th>
+	            <td><input type="text" name="isi"  placeholder="isi" value="{{postingan.isi}}" id="isi">
+	            </td>
+	        </tr>
+	        <tr>
+	            <th><label for="id_kategori">Kategori: </label></th>
+	            <td> <select name="id_kategori">
+	            	{% for element in ini_kategori %}
+	            	<option value={{ element.id }} >{{ element.nama_kategori }}</option>
+	            	{% endfor %}
+	            </select></td>
+	         </tr>
+	    </table>
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+
+    
+{% endblock %}

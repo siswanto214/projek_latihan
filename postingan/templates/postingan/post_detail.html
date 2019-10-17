@@ -1,0 +1,44 @@
+{% extends 'postingan/base.html' %}
+
+{% block content %}
+    <div class="post">                
+        <h2>{{ post.judul }}</h2>
+        <p>{{ post.isi|linebreaksbr }}</p>
+        <p>kategori : {{ post.kategori.nama_kategori|linebreaksbr }}</p>
+        {% if personel.tanggal_post %}
+            <div class="date">
+                diposting pada : {{ post.tanggal_post }}
+            </div>
+        {% endif %}
+        {% if user.is_authenticated %}
+            <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+            <a class="btn btn-default" href="{% url 'post_delete' pk=post.pk %}"><span class="glyphicon glyphicon-trash"></span></a>
+        {% endif %}
+        <p>komentar : </p>
+        {% for komen in komentar %}
+        <table>
+            <tr>
+                <td><p style="color: red;">{{ komen.komentar }}</p></td>
+                <td>
+                   <a class="btn btn-default" href="{% url 'komen_edit' pk=komen.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
+                   <a class="btn btn-default" href="{% url 'komen_delete' pk=komen.id  %}"><span class="glyphicon glyphicon-trash"></span></a>
+                </td>
+            <tr>
+        </table>
+        {% endfor %}
+
+    </div>
+    <div>
+       <form action="{% url 'komen_new' %}" method="post">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <th><label for="komentar">Komentar: </label></th>
+                <td><input type="text" name="komentar"  placeholder="komentar" id="komentar"></td>
+                <td><input type="text"  hidden="yes" name="postingan"  placeholder="id_post" value={{ post.id|linebreaksbr }} id="id_post"></td>
+            <tr>        
+        </table>
+        <input type="submit" value="Tambah Komentar">
+    </form>
+    </div>
+{% endblock %}

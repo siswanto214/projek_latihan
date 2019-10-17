@@ -1,0 +1,39 @@
+{% extends 'postingan/base.html' %}
+
+{% block content %}
+
+    <table border="1">
+        <tr>
+            <th> Kategori </th>
+            <th> Keterangan </th>
+        </tr>
+        {% for kat in ini_kategori %}
+        <tr>            
+            <td>
+                <p style="color: red;">{{ kat.nama_kategori }}</p>
+            </td>
+            <td>
+             <a class="btn btn-default" href="{% url 'kategori_edit' pk=kat.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
+             <a class="btn btn-default" href="{% url 'kategori_delete' pk=kat.id  %}"><span class="glyphicon glyphicon-trash"></span></a>
+            </td>
+        <tr>
+        {% endfor %}
+    </table>
+    
+    {% if user.is_authenticated %}
+    <div>
+        <form action="{% url 'kategori_new' %}" method="post">
+        {% csrf_token %}
+            <table>
+            <tr>
+                <th><label for="nama_kategori">Tambah Kategori: </label></th>
+                <td><input type="text" name="nama_kategori"  placeholder="nama kategori" id="nama_kategori"></td>
+            <tr>
+            </table>
+            <input type="submit" value="Tambah Kategori">
+        </form>
+    </div>
+    {% endif %}
+
+{% endblock %}
+

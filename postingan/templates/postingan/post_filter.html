@@ -1,0 +1,20 @@
+{% extends 'postingan/base.html' %}
+
+{% block content %}
+<form action="{% url 'post_filter' %}" method="post">
+    {% csrf_token %}
+    <table>
+        </tr>
+        <tr>
+            <th><label for="id_kategori">Kategori: </label></th>
+            <td> <select name="id_kategori">
+            	{% for element in ini_kategori %}
+            	<option value={{ element.id }} >{{ element.nama_kategori }}</option>
+            	{% endfor %}
+            </select></td>
+         </tr>
+    </table>
+    <input type="submit" value="Filter">
+</form>
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'postingan/base.html' %}
+
+{% block content %}
+<form action="{% url 'post_new' %}" method="post">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <th><label for="penulis">Penulis: </label></th>
+            <td><input type="text" name="penulis"  placeholder="penulis" id="penulis"></td>
+        <tr>
+        <tr>
+            <th><label for="judul">Judul: </label></th>
+            <td><input type="text" name="judul"  placeholder="judul"
+             id="judul"></td>
+         </tr>
+         <tr>
+            <th><label for="isi">Isi: </label></th>
+            <td><input type="text" name="isi"  placeholder="isi" id="isi">
+            </td>
+        </tr>
+        <tr>
+            <th><label for="id_kategori">Kategori: </label></th>
+            <td> <select name="id_kategori">
+            	{% for element in ini_kategori %}
+            	<option value={{ element.id }} >{{ element.nama_kategori }}</option>
+            	{% endfor %}
+            </select></td>
+         </tr>
+    </table>
+    <input type="submit" value="Tambah">
+</form>
+
+{% endblock %}

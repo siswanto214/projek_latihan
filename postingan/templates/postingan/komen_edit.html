@@ -1,0 +1,17 @@
+{% extends 'postingan/base.html' %}
+
+{% block content %}
+    <h2>Edit Koment</h2>
+    <form method="POST" class="post-form">
+    	{% csrf_token %}
+        <table>
+	        <tr>
+	            <th><label for="komentar">Komentar: </label></th>
+	            <td><input type="text" name="komentar"  placeholder="komentar" value="{{komen.komentar}}" id="komentar"></td>
+	        <tr>	        
+	    </table>
+        <button type="submit" class="save btn btn-default">Save Comment</button>
+    </form>
+
+    
+{% endblock %}

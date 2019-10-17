@@ -1,0 +1,49 @@
+{% extends 'postingan/base.html' %}
+
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ini tutorial aja</title>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="{% static 'css/blog.css' %}">
+	<link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <script src="{% static 'js/jquery-plugin-collection.js' %}"></script>
+</head>
+<body>
+    <div class="page-header">
+        <h1 ><a href="/" >Django Girls Blog</a></h1>
+        <a href="https://en.wikipedia.org/wiki/Django" class="external_link" id="link_to_wiki_page">wikipedia</a>        
+    </div>
+
+    {% block content %}
+
+        <a href="{% url 'post_filter' %}" class="top-menu"><button><span class="" style="color:black;">Filter Kategori</span></button></a>
+        <a href="{% url 'kategori_list' %}" class="top-menu"><button><span class="" style="color:blue;">Lihat Kategori</span></button></a>
+
+        {% if filter_kategori.nama_kategori %}
+            <h1>Post berdasakan kategori : <b>{{ filter_kategori.nama_kategori }}</b></h1>
+        {% else %}
+            <h1>Semua Postingan</h1>
+        {% endif %}
+
+
+	    {% for post in postingan %}
+
+	    <div class="post" >
+            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.judul }}</a></h2>
+            <p>{{ post.isi|linebreaksbr }}</p>
+            <p>kategori : {{ post.kategori.nama_kategori|linebreaksbr }}</p>
+            <div class="date">
+                diposting pada : {{ post.tanggal_post }}
+            </div>
+        </div>
+
+	    {% endfor %}        
+
+	{% endblock %}
+
+</body>
+</html>

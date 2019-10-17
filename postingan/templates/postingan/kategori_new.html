@@ -1,0 +1,16 @@
+{% extends 'postingan/base.html' %}
+
+{% block content %}
+<form action="{% url 'kategori_new' %}" method="post">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <th><label for="nama_kategori">Kategori: </label></th>
+            <td><input type="text" name="nama_kategori"  placeholder="nama kategori" id="nama_kategori"></td>
+        <tr>
+        
+    </table>
+    <input type="submit" value="Tambah Kategori">
+</form>
+
+{% endblock %}
